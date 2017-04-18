@@ -6,6 +6,7 @@ class Booking < ApplicationRecord
   #exclusion: { in: meeting.user, message: "You can not attend your own mentorship" }
   validates :meeting, presence: true
   validates :motivations, presence: true
+<<<<<<< HEAD
 
   validate :mentor_cant_be_student
 
@@ -15,4 +16,6 @@ class Booking < ApplicationRecord
       errors.add(:user, " can not attend your own mentorship")
     end
   end
+=======
+>>>>>>> master
 end
