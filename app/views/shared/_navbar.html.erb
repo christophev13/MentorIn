@@ -59,7 +59,6 @@
 
 <!-- add if user not logged in -->
       <% else %>
-      <%= link_to 'Create a Meeting', '#' %>
       <p class="navbar-text navbar-right"><%= link_to 'Sign in / Sign up', '#myModal', data: {toggle: "modal"} %></p>
       <!-- Button trigger modal -->
       <% end %>
@@ -94,6 +93,7 @@
         <%= image_tag "ID.jpeg", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li><a href="#">Profile</a></li>
+        <li><%= link_to "Create a Meeting", new_meeting_path %></li>
         <li><%= link_to destroy_user_session_path, method: :delete do %>
           <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
         <% end %></li>

@@ -1,4 +1,5 @@
 <%= simple_form_for(@meeting) do |f| %>
+  <%= f.error_notification %>
     <%= f.input :title, placeholder: "" %>
     <%= f.input :description, placeholder: "" %>
     <%= f.input :nb_max_participant, placeholder: "From 1 to 5", collection: 1..5 %>
