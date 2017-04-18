@@ -3,23 +3,24 @@
   <div class="navbar-wagon-left">
     <div>
       <%= link_to root_path, class: "navbar-wagon-brand" do %>
-        <%= image_tag "logo.png" %>
+        <!-- <%= image_tag "logo.png" %> -->
+        MentorIN
       <% end %>
     </div>
     <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
+    <!-- <form action="" class="navbar-wagon-search">
       <input type="text" class="navbar-wagon-search-input" placeholder="Search a mentoring">
       <button type="submit" class="navbar-wagon-search-btn">
         <i class="fa fa-search"></i>
       </button>
-    </form>
+    </form> -->
   </div>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <!-- Different navigation if login or not -->
-<!--   add the "if user_signed_in?" -->
+  <% if user_signed_in? %>
 
     <!-- Button (call-to-action) -->
     <div class="text-center">
@@ -48,7 +49,7 @@
             </li>
             <li>
 <!-- link to add below destroy_user_session_path -->
-              <%= link_to '#', method: :delete do %>
+              <%= link_to destroy_user_session_path, method: :delete do %>
                 <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
@@ -57,6 +58,28 @@
       </div>
 
 <!-- add if user not logged in -->
+      <% else %>
+      <%= link_to 'Create a Meeting', '#' %>
+      <p class="navbar-text navbar-right"><%= link_to 'Sign in / Sign up', '#myModal', data: {toggle: "modal"} %></p>
+      <!-- Button trigger modal -->
+      <% end %>
+
+    <!-- modal for Log in -->
+    <% unless current_user %>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Log in</h4>
+            </div>
+            <div class="modal-body">
+              <%= render 'devise/sessions/new'%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
 
   </div>
@@ -64,12 +87,21 @@
   <!-- Dropdown list appearing on mobile only -->
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+
+      <!-- <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i> -->
+      <% if user_signed_in? %>
+        <!-- <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i> -->
+        <%= image_tag "ID.jpeg", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+        <% end %></li>
       </ul>
+      <% else %>
+
+      <%= link_to 'Sign in / Sign up',new_user_session_path %>
+      <% end %>
     </div>
   </div>
 </div>
