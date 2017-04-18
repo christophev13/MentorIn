@@ -24,7 +24,7 @@
 
     <!-- Button (call-to-action) -->
     <div class="text-center">
-      <%= link_to "#", class: "mentorship-btn" do %>
+      <%= link_to new_meeting_path, class: "mentorship-btn" do %>
         <div>  <%= inline_svg "003-people.svg", class: "navbar-icone" %></div>
         <div> <%=t(".top_call_to_action", default: "Propose your mentorship")%></div>
       <% end %>
