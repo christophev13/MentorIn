@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h2><%= @meeting.title %></h2>
+        <p><%= @meeting.description %></p>
+        <p><%= @meeting.profile_wanted%></p>
+        <p><%= @meeting.nb_max_participant %></p>
+
+    <%= simple_form_for(@meeting) do |f| %>
+      <%= f.error_notification %>
+        <%= f.input :date, placeholder: "" %>
+        <%= f.input :local, placeholder: "" %>
+        <%= f.button :submit, class: "btn btn-primary"  %>
+    <% end %>
+
+    <%= link_to 'Cancel', meeting_path(@meeting) %>
+    </div>
+  </div>
+</div>
