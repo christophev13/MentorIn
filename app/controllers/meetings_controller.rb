@@ -21,7 +21,6 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(meeting_params)
     @meeting.user = current_user
-    byebug
     if @meeting.save
       redirect_to meetings_path
     else
