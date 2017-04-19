@@ -7,4 +7,10 @@ class Meeting < ApplicationRecord
   validates :local, presence: true
   validates :date, presence: true
 
+  # method for seach
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%")
+    # where("title ILIKE ?", "%#{search}%")
+    # where("description ILIKE ?", "%#{search}%")
+  end
 end

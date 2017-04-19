@@ -17,17 +17,26 @@ $header-font: "Roboto", "Helvetica", "sans-serif";
 // $my-font: "Font Name";
 
 // Font-size and line-height
-$base-size: 16px;
+$base-size: 14px;
 $base-height: 1.4;
 
 /* -------------------------------------
  * Colors
  * ------------------------------------- */
 // Scheme
-$grey: rgba(55, 57, 46, 1);
-$blue: rgba(25, 100, 126, 1);
+// $dark-grey: rgba(55, 57, 46, 1);
+// $blue: rgba(25, 100, 126, 1);
+// $turquoise: rgba(40, 175, 176, 1);
+// $lightgrey: rgba(221, 206, 205, 1);
+// $ultralightgrey: rgba(238, 229, 229, 1);
+// $bluegrey: #1E8081;
+// $red: #FF2C33;
+
+// Scheme LinkedIN
+$dark-grey: rgba(32, 32, 32, 1);
+$light-grey: rgba(161, 157, 157, 1);
+$blue: rgba(37, 109, 169, 1);
 $turquoise: rgba(40, 175, 176, 1);
-$lightgrey: rgba(221, 206, 205, 1);
-$ultralightgrey: rgba(238, 229, 229, 1);
-$bluegrey: #1E8081;
+$ultra-light-grey: rgba(238, 229, 229, 1);
+$light-blue: rgba(0, 119, 181, 1);
 $red: #FF2C33;

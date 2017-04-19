@@ -1,0 +1,24 @@
+<div class="row">
+  <% @meetings.each do |m| %>
+    <div class="col-md-6 col-lg-4">
+      <div class="card card-meeting">
+        <!-- <div class="header-image" background="https://unsplash.it/1200/800" alt=""></div> -->
+        <div class="header-image" style="background-image: url('https://unsplash.it/900/800')"></div>
+        <div class='div-center'><%= image_tag m.user.avatar_url, class: 'header-avatar' %></div>
+
+        <div class="content text-center">
+          <h4><%= m.user.first_name %> <%= m.user.last_name %></h4>
+          <h6><%= m.user.industry %> <%= m.user.profile %></h6>
+          <hr>
+          <h3><%= m.title %></h3>
+          <p><%= m.description.first(140) %></p>
+          <hr>
+          <p><i class="fa fa-calendar"></i> <%= m.date.strftime("%d %b, %Y") %> - <%= m.date.strftime("%I:%M%P") %></p>
+          <p><i class="fa fa-map-marker"></i> <%= m.local %></p>
+          <p><%= link_to 'Join', '#', class: 'btn btn-primary' %></p>
+        </div>
+
+    </div>
+  </div>
+  <% end %>
+</div>

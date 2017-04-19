@@ -2,6 +2,11 @@ class MeetingsController < ApplicationController
 
   def index
     @meetings = Meeting.all
+    if params[:search]
+      @meetings = Meeting.search(params[:search]).order("created_at DESC")
+    else
+      @meetings = Meeting.all.order('created_at DESC')
+    end
   end
 
   def show
