@@ -3,9 +3,9 @@ class MeetingsController < ApplicationController
   def index
     @meetings = Meeting.all
     if params[:search]
-      @meetings = Meeting.search(params[:search]).order("created_at DESC")
+      @meetings = Meeting.search(params[:search]).order("date ASC").where('date >= ?', Time.now)
     else
-      @meetings = Meeting.all.order('created_at DESC')
+      @meetings = Meeting.all.order('date ASC').where('date >= ?', Time.now)
     end
   end
 
@@ -22,7 +22,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.new(meeting_params)
     @meeting.user = current_user
     if @meeting.save
-      redirect_to root_path
+      redirect_to meetings_path
     else
       render :new
     end
