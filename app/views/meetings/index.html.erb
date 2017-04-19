@@ -1,0 +1,15 @@
+<h1 class="text-center padded-top">Choose one of the <%= Meeting.all.order('date ASC').where('date >= ?', Time.now).count %> meetings available. </h1>
+<h4 class="text-center padded-bottom">Just a very powerful phrase that will make people crazy about MentorING</h4>
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 text-center padded-bottom">
+    <%= form_tag(meetings_path, :method => "get", id: "search-form", class: "form-inline") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control' %>
+      <%= submit_tag "Search", class: 'btn btn-info' %>
+    <% end %>
+    </div>
+  </div>
+  <% if @meetings.present? %>
+    <%= render 'meetings' %>
+  <% else %>
+    <p class="padded text-center text-warning bg-warning">There are no <strong>Meetings</strong> containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
