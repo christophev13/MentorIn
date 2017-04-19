@@ -36,7 +36,7 @@
           <p class="navbar-text navbar-left"><i class="fa fa-user"></i><br>
          Profile&nbsp;&nbsp;&nbsp;</p>
       <% end %>
-      <%= link_to new_meeting_path, class: "navbar-icone" do %>
+      <%= link_to destroy_user_session_path, method: :delete, class: "navbar-icone" do  %>
           <p class="navbar-text navbar-left"><i class="fa fa-sign-out"></i><br>
          Log out</p>
       <% end %>
