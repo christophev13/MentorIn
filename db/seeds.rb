@@ -124,6 +124,7 @@ k = User.new(email: "Student4@gmail.com",
     password: "123456",
 biography: "Student @ Stanford, I want to talk about business opportunites in the advertising sector.")
 k.save
+
 l = User.new(email: "GRamsey@gmail.com",
     first_name: "Gorden",
     last_name: "Ramsey",
@@ -254,3 +255,4 @@ meet6.save
   bk62.save
 
 
+>>>>>>> master
