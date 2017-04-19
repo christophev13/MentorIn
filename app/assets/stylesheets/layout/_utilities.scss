@@ -3,11 +3,20 @@
  * These are examples of utilities classes
  * Feel free to change them and create your own
  * ------------------------------------- */
-
+p {
+  font-weight: 300;
+}
 // Paddings
 .padded {
-  padding-top: 5em;
-  padding-bottom: 5em;
+  padding: 2em 0;
+
+  &-top {
+    padding-top: 1em;
+  }
+
+  &-bottom {
+    padding-bottom: 1em;
+  }
 }
 
 // Backgrounds
@@ -22,4 +31,10 @@
 }
 .bg-dark-blue {
   background: #3b5998;
+}
+
+
+// div aligment center
+.div-center {
+  margin: 0 auto;
 }
