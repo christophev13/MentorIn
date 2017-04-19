@@ -1,0 +1,38 @@
+<h1 class="text-center padded-top">Choose one of the <%= Meeting.all.order('date ASC').where('date >= ?', Time.now).count %> meetings available. </h1>
+<h4 class="text-center padded-bottom">Just a very powerful phrase that will make people crazy about MentorING</h4>
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 text-center padded-bottom">
+    <%= form_tag(meetings_path, :method => "get", id: "search-form", class: "form-inline") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control' %>
+      <%= submit_tag "Search", class: 'btn btn-info' %>
+    <% end %>
+    </div>
+  </div>
+  <% if @meetings.present? %>
+    <%= render 'meetings' %>
+  <% else %>
+    <p class="padded text-center text-warning bg-warning">There are no <strong>Meetings</strong> containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+<!-- <div class="row">
+  <% @meetings.each do |m| %>
+    <div class="col-md-6 col-lg-4">
+      <div class="card card-meeting">
+        <div class="header-image" style="background-image: url('https://unsplash.it/900/800')"></div>
+        <div class='div-center'><%= image_tag m.user.avatar_url, class: 'header-avatar' %></div>
+
+        <div class="content text-center">
+          <h4><%= m.user.first_name %> <%= m.user.last_name %></h4>
+          <h6><%= m.user.industry %> <%= m.user.profile %></h6>
+          <hr>
+          <h3><%= m.title %></h3>
+          <p><%= m.description.first(140) %></p>
+          <hr>
+          <p><i class="fa fa-calendar"></i> <%= m.date.strftime("%d %b, %Y") %> - <%= m.date.strftime("%I:%M%P") %></p>
+          <p><i class="fa fa-map-marker"></i> <%= m.local %></p>
+          <p><%= link_to 'Join', '#', class: 'btn btn-info' %></p>
+        </div>
+
+    </div>
+  </div>
+  <% end %>
+</div> -->
