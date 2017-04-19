@@ -23,10 +23,22 @@
   <% if user_signed_in? %>
 
     <!-- Button (call-to-action) -->
-    <div class="text-center">
-      <%= link_to new_meeting_path, class: "mentorship-btn" do %>
-        <div>  <%= inline_svg "003-people.svg", class: "navbar-icone" %></div>
-        <div> <%=t(".top_call_to_action", default: "Propose your mentorship")%></div>
+    <div class="text-center navbar-text navbar-righ">
+      <%= link_to new_meeting_path, class: "navbar-icone" do %>
+          <p class="navbar-text navbar-left"><i class="fa fa-users"></i><br>
+         Create Meeting&nbsp;&nbsp;&nbsp;</p>
+      <% end %>
+      <%= link_to meetings_path, class: "navbar-icone" do %>
+          <p class="navbar-text navbar-left"><i class="fa fa-th-list"></i><br>
+         View Meetings&nbsp;&nbsp;&nbsp;</p>
+      <% end %>
+      <%= link_to dashboards_show_path, class: "navbar-icone" do %>
+          <p class="navbar-text navbar-left"><i class="fa fa-user"></i><br>
+         Profile&nbsp;&nbsp;&nbsp;</p>
+      <% end %>
+      <%= link_to new_meeting_path, class: "navbar-icone" do %>
+          <p class="navbar-text navbar-left"><i class="fa fa-sign-out"></i><br>
+         Log out</p>
       <% end %>
     </div>
 
