@@ -1,4 +1,5 @@
 class MeetingsController < ApplicationController
+  before_action :set_meeting, only: [:show, :edit, :update, :destroy]
 
   def index
     @meetings = Meeting.all
@@ -10,9 +11,7 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @meeting = Meeting.find(params[:id])
   end
-
 
   def new
     @meeting = Meeting.new
@@ -26,14 +25,29 @@ class MeetingsController < ApplicationController
     else
       render :new
     end
-
   end
 
+  def edit
+  end
+
+  def update
+    @meeting.update_attributes(meeting_params)
+    redirect_to meeting_path(@meeting)
+  end
+
+  def destroy
+    @meeting.destroy
+    redirect_to dashboards_show_path
+  end
 
   private
 
   def meeting_params
     params.require(:meeting).permit(:title, :description, :date, :local, :nb_max_participant, :profile_wanted)
+  end
+
+  def set_meeting
+    @meeting = Meeting.find(params[:id])
   end
 
 end
