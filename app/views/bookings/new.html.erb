@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Mentorship meeting</h1>
+  <h2><%= @meeting.title %></h2>
+
+  <%= simple_form_for [@meeting, @booking] do |f| %>
+    <%= f.input :motivations, placeholder: "Please describe the reasons why you want to join this mentorship", label: false %>
+    <%= f.submit 'Send your resquest', class: "btn btn-primary"%>
+  <% end %>
+
+
+
+
+</div>

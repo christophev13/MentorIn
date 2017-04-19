@@ -1,0 +1,65 @@
+<!-- Lateral card with profile main info -->
+<div class="row">
+  <!-- add image_tag @user.avatar_url -->
+
+  <div class="col-xs-3 text-center">
+      <%= "#{@user.first_name} #{@user.last_name}"%> <br>
+      <%=@user.industry%>
+    <hr>
+      <h5>Your meetings as mentee:</h5>
+      <%=@nb_meeting_mentee%>
+    <hr>
+      <h5>Your meetings as mentor:</h5>
+      <%=@nb_meeting_mentor%>
+  </div>
+
+
+  <!-- List of meeting as mentee -->
+  <div class="col-xs-9">
+    <div class="row">
+      <%@user.booking.each do |booking|%>
+        <div class="row">
+        <div class="col-xs-3">
+          <!-- add image_tag @user.avatar_url -->
+          <%="#{booking.meeting.user.first_name} #{booking.meeting.user.last_name}"%><br>
+          <%="#{booking.meeting.user.industry} | #{booking.meeting.user.profile}"%>
+        </div>
+        <div class="col-xs-6">
+          <%=booking.meeting.title%><br>
+          <%=booking.meeting.profile_wanted%><br>
+          <%="#{booking.meeting.date} | #{booking.meeting.local}"%>
+        </div>
+        <div class="col-xs-3">
+          Status
+          <%=booking.confirmation%>
+        </div>
+        </div>
+      <% end %>
+    </div>
+
+
+  <!-- List of meeting as mentor -->
+    <div class="row">
+      <%@user.meetings.each do |meeting|%>
+        <div class="row">
+        <div class="col-xs-3">
+          <!-- add image_tag @user.avatar_url -->
+          <%="#{meeting.user.first_name} #{meeting.user.last_name}"%><br>
+          <%="#{meeting.user.industry} | #{meeting.user.profile}"%>
+        </div>
+        <div class="col-xs-6">
+          <%=meeting.title%><br>
+          <%=meeting.profile_wanted%><br>
+          <%="#{meeting.date} | #{meeting.local}"%>
+        </div>
+        <div class="col-xs-3">
+          Status<br>
+          <%="Confirmations: #{meeting.booking.reduce(0){|counter, item| counter += (item.confirmation == true ? 1 : 0) }}"%>
+        </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
