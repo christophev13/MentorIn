@@ -9,8 +9,7 @@ class Meeting < ApplicationRecord
 
   # method for seach
   def self.search(search)
-    where("title LIKE ?", "%#{search}%")
-    # where("title ILIKE ?", "%#{search}%")
+    where("title LIKE (?) OR description LIKE (?)", "%#{search}%", "%#{search}%")
     # where("description ILIKE ?", "%#{search}%")
   end
 end
