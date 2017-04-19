@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
 
     if @booking.save
-      redirect_to meetings_path
+      redirect_to dashboards_show_path
     else
       render :new
     end
@@ -41,4 +41,3 @@ private
   end
 
 end
-

@@ -1,0 +1,17 @@
+.banner {
+  height: 93vh;
+  width: 100%;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  &-content {
+    flex: 0 0 500px;
+    height: 80%;
+    margin-left: 50px;
+    padding: 20px;
+  }
+
+
+}
