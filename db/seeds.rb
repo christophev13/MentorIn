@@ -124,13 +124,30 @@ k = User.new(email: "Student4@gmail.com",
     password: "123456",
 biography: "Student @ Stanford, I want to talk about business opportunites in the advertising sector.")
 k.save
-meet1 = Meeting.new(title: "Retail in Brazil", description: "Abilio criou e desenvolveu, junto com o pai, o maior grupo varejista do País, o Pão de Açúcar", nb_max_participant: 5, local: "avenida Faria Lima", profile_wanted: "College Freshman", date: "20/05/2017")
+meet1 = Meeting.new(title: "Retail in Brazil",
+                    description: "Abilio criou e desenvolveu, junto com o pai, o maior grupo varejista do País, o Pão de Açúcar",
+                    nb_max_participant: 5,
+                    local: "avenida Faria Lima",
+                    profile_wanted: "College Freshman",
+                    date: "20/05/2017")
 meet1.user = e
 meet1.save
-meet2 = Meeting.new(title: "Ruby on rails, Because You’re Worth It", description: "Ruby on Rails, or simply Rails, is a server-side web application framework written in Ruby under the MIT License. Rails is a model–view–controller (MVC) framework, providing default structures for a database, a web service, and web pages. It encourages and facilitates the use of web standards such as JSON or XML for data transfer, and HTML, CSS and JavaScript for display and user interfacing. In addition to MVC, Rails emphasizes the use of other well-known software engineering patterns and paradigms, including convention over configuration (CoC), don't repeat yourself (DRY), and the active record pattern.", nb_max_participant: 5, local: "Rua Mourato Coelho, 1404 - Sao Paulo", profile_wanted: "College Freshman", date: "15/05/2017")
+
+meet2 = Meeting.new(title: "Ruby on rails, Because You’re Worth It",
+                    description: "Ruby on Rails, or simply Rails, is a server-side web application framework written in Ruby under the MIT License. Rails is a model–view–controller (MVC) framework, providing default structures for a database, a web service, and web pages. It encourages and facilitates the use of web standards such as JSON or XML for data transfer, and HTML, CSS and JavaScript for display and user interfacing. In addition to MVC, Rails emphasizes the use of other well-known software engineering patterns and paradigms, including convention over configuration (CoC), don't repeat yourself (DRY), and the active record pattern.",
+                    nb_max_participant: 5,
+                    local: "Rua Mourato Coelho, 1404 - Sao Paulo",
+                    profile_wanted: "College Freshman",
+                    date: "15/05/2017")
 meet2.user = b
 meet2.save
-meet3 = Meeting.new(title: "Furture of Urban mobility", description: "Happy to discuss with young professional on the future of the Urban mobility", profile_wanted:  "Junior Professional", date: "20/05/2017")
+
+meet3 = Meeting.new(title: "Furture of Urban mobility",
+                    description: "Happy to discuss with young professional on the future of the Urban mobility",
+                    nb_max_participant: 5,
+                    local: "Google Campus",
+                    profile_wanted:  "Junior Professional",
+                    date: "20/05/2017")
 meet3.user = f
 meet3.save
 bk1 = Booking.new(motivations: "I want to work in the retail space, I would like to know more about it and see it fits with my ambitions")
@@ -141,10 +158,12 @@ bk2 = Booking.new(motivations: "I want to ask Abilio Diniz some money")
 bk2.user = j
 bk2.meeting = meet1
 bk2.save
-bk3 = Booking.new(motivations: "I am seeking for some advise to redirect my career, I think Abilio Diniz will be a great inspiration")
-bk3.user = g
+
+bk3 = Booking.new(motivations: "I am a tech CEO and I would really hear JB talking about Ruby")
+bk3.user = f
 bk3.meeting = meet2
 bk3.save
+
 bk4 = Booking.new(motivations: "Ruby is my passion")
 bk4.user = g
 bk4.meeting = meet2
