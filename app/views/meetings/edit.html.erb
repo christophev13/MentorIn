@@ -1,19 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h2><%= @meeting.title %></h2>
-        <p><%= @meeting.description %></p>
-        <p><%= @meeting.profile_wanted%></p>
-        <p><%= @meeting.nb_max_participant %></p>
-
-    <%= simple_form_for(@meeting) do |f| %>
-      <%= f.error_notification %>
-        <%= f.input :date, placeholder: "" %>
-        <%= f.input :local, placeholder: "" %>
-        <%= f.button :submit, class: "btn btn-primary"  %>
-    <% end %>
-
-    <%= link_to 'Cancel', meeting_path(@meeting) %>
+      <h2>Edit your Meeting</h2>
+      <%= simple_form_for(@meeting) do |f| %>
+        <%= f.error_notification %>
+          <%= f.input :title, placeholder: "", :readonly => true %>
+          <%= f.input :description, placeholder: "", :readonly => true %>
+          <%= f.input :nb_max_participant, placeholder: "From 1 to 5", collection: 1..5, :disabled => true %>
+          <%= f.input :profile_wanted, label: 'Level of Experience', collection: User::PROFILE, :disabled => true %>
+          <%= f.input :date, placeholder: "" %>
+          <%= f.input :local, placeholder: "" %>
+          <%= f.button :submit, class: "btn btn-primary"  %>
+      <% end %>
+      <br>
+    <%= link_to 'Back', meeting_path(@meeting) %>
     </div>
   </div>
 </div>

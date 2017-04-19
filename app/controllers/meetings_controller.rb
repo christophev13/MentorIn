@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: [:show, :edit, :update]
+  before_action :set_meeting, only: [:show, :edit, :update, :destroy]
 
   def index
     @meetings = Meeting.all
@@ -33,6 +33,11 @@ class MeetingsController < ApplicationController
   def update
     @meeting.update_attributes(meeting_params)
     redirect_to meeting_path(@meeting)
+  end
+
+  def destroy
+    @meeting.destroy
+    redirect_to dashboards_show_path
   end
 
   private
