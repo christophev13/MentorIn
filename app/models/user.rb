@@ -4,6 +4,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :meetings, dependent: :destroy
   has_many :booking
+  after_create :send_welcome_email
 
   INDUSTRY = ["Airlines/Aviation",
 "Alternative Dispute Resolution",
@@ -164,7 +165,6 @@ class User < ApplicationRecord
   validates :profile, presence: true, inclusion:{in: PROFILE}
   validates :biography, presence: true
 
-
   def self.find_for_linkedin_oauth(auth)
 
     binding.pry
@@ -192,6 +192,12 @@ class User < ApplicationRecord
     end
 
     return user
+  end
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
   end
 
 

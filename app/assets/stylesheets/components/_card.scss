@@ -39,11 +39,11 @@
         padding: 15px;
         margin-top: 10%;
       }
-  }
+}
 
   &-home {
     width: 100%;
-    padding: 25px;
+    padding: 15px;
 }
 
   &-profile {
@@ -53,7 +53,7 @@
 
       div.header-image {
         width: 100%;
-        height: 50px;
+        height: 5em;
         // background-image: url('https://unsplash.it/1200/800');
         background-size: cover;
       }
@@ -61,16 +61,16 @@
       img {
         position: relative;
         border-radius: 50%;
-        width: 100px;
-        height: 100px;
+        width: 50%;
+        height: auto;
         overflow: hidden;
         border: 3px solid white;
-        margin: -50px auto;
+        margin: -4.3em auto;
         display: block;
       }
 
       div.content {
-        margin-top: 25%;
+        margin-top: 30%;
         margin-bottom: 15px;
 
       }
@@ -111,11 +111,27 @@
         justify-content: space-between;
         align-items: center;
       }
+      img.preview {
+        width: 30px;
+        height: 30px;
+        margin-top: -2.8em;
+      }
+
   }
 }
 
 
 .list-div{
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
+
+#light {
+        width:25px;
+        height: auto;
+      }
+
+.list-pad {
+       padding-left: 2em;
+      }
+

@@ -1,7 +1,61 @@
-<h2><%= @meeting.title %></h2>
-        <p><%= @meeting.description %></p>
-        <p><%= @meeting.date.strftime("%d %b, %Y") %></p>
-        <p><%= @meeting.local %></p>
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> | <%= link_to "Delete", meeting_path,
-      method: :delete,
-      data: { confirm: "Are you sure? Please do inform the Attendees" } %>
+<div class="container">
+
+  <h2><%= @meeting.title %></h2>
+          <p><%= @meeting.description %></p> <br>
+          <i class="fa fa-calendar"></i><%=" #{@meeting.date.strftime('%d %b, %Y')}"%> <br>
+          <i class="fa fa-clock-o"></i><%=" #{@meeting.date.strftime('%I:%M%P')}"%> <br>
+          <i class="fa fa-map-marker"></i><%=" #{@meeting.local}"%> <br><br>
+
+
+<%if @show_mentees #display the edit / delete of meeting only to the mentor%>
+  <%= link_to 'Edit meeting', edit_meeting_path(@meeting) %> | <%= link_to "Delete meeting", meeting_path,
+        method: :delete,
+        data: { confirm: "Are you sure? Please do inform the Attendees" } %>
+<% end %>
+
+<br>
+<br>
+<%if @show_mentees #display the list of booking only to the mentor%>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>List of participation request for your mentorship</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="card card-list">
+    <hr>
+    <%@meeting.booking.order(:id).each do |booking|%>
+    <div class="row list-div">
+      <div class="col-xs-4">
+        <div class="dash-flex">
+          <div class='div-center'>
+            <%= image_tag avatar_url?(booking.user), class: "dash-avatar"%>
+          </div>
+          <div class="dash-title">
+           <%="#{booking.user.first_name} #{booking.user.last_name}"%><br>
+            <h6><%="#{booking.user.profile} | #{booking.user.industry}"%></h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <%="Motivations: #{booking.motivations}" %>
+      </div>
+
+      <div class="col-xs-2 text-center">
+        <% if booking.confirmation %>
+          <h6>Participant confirmed</h6>
+            <%= image_tag 'green-light.png', id: "light"%>
+        <% else %>
+        <%= button_to "Confirm participation", confirm_user_meeting_booking_path(@meeting,booking), method: :patch, class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
+
+</div>

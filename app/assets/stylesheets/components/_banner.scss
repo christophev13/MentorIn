@@ -1,5 +1,5 @@
 .banner {
-  height: 93vh;
+  height: 91vh;
   width: 100%;
   background-size: cover;
   display: flex;
@@ -7,9 +7,9 @@
   justify-content: flex-start;
 
   &-content {
-    flex: 0 0 500px;
+    flex: 0 500px;
     height: 80%;
-    margin-left: 50px;
+    // margin-left: 50px;
     padding: 20px;
   }
 
