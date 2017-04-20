@@ -10,7 +10,7 @@
     </div>
   </div>
   <% if @meetings.present? %>
-    <%= render 'meetings' %>
+    <%= render 'meetings', meetings: @meetings %>
   <% else %>
     <p class="padded text-center text-warning bg-warning">There are no <strong>Meetings</strong> containing the term(s) <%= params[:search] %>.</p>
   <% end %>
