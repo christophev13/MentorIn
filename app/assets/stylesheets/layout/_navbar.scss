@@ -4,7 +4,7 @@
   background: $blue-grey;
   transition: all 0.3s ease;
   display: flex;
-  height: 55px;
+  height: 65px;
   padding: 0px 50px;
   align-items: center;
   justify-content: space-between;
@@ -124,6 +124,7 @@
   width: 40px;
   margin: 0;
   color: $light-grey;
+  text-decoration: none;
 }
 
 // .mentorship-btn{
