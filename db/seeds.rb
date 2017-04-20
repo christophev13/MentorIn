@@ -254,5 +254,3 @@ meet6.save
   bk62.meeting = meet6
   bk62.save
 
-
-
