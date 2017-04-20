@@ -6,7 +6,9 @@
   <div class="col-xs-3">
     <div class="text-center card card-profile">
     <div class="header-image" style="background-image: url('https://unsplash.it/600/120')"></div>
-    <div class='div-center'><%= image_tag avatar_url?(@user)%></div>
+    <%= link_to user_path(@user) do %>
+      <div class='div-center'><%= image_tag avatar_url?(@user)%></div>
+    <% end %>
     <div class="content text-center">
       <h4><%= "#{@user.first_name} #{@user.last_name}"%></h4><br>
       <h6><%=@user.industry%></h6>
@@ -36,7 +38,9 @@
         <div class="col-xs-4">
           <div class="dash-flex">
             <div class='div-center'>
-              <%= image_tag avatar_url?(booking.meeting.user)%>
+              <%= link_to user_path(booking.meeting.user) do %>
+                <%= image_tag avatar_url?(booking.meeting.user)%>
+              <% end %>
             </div>
             <div class="dash-title">
              <%="#{booking.meeting.user.first_name} #{booking.meeting.user.last_name}"%><br>
@@ -50,7 +54,7 @@
             <div class="no-decoration">
               <strong><%=booking.meeting.title%></strong><br>
               <%=booking.meeting.profile_wanted%><br>
-              <i class="fa fa-calendar"></i><%=" #{booking.meeting.date.strftime('%d %b, %Y')} | "%>
+              <i class="fa fa-calendar"></i><%=" #{booking.meeting.date.strftime('%d %b, %Y')} | #{booking.meeting.date.strftime('%I:%M%P')}"%> <br>
               <i class="fa fa-map-marker"></i><%=" #{booking.meeting.local}"%>
             </div>
           <% end %>
@@ -72,6 +76,7 @@
 
 
   <!-- List of meeting as mentor -->
+  <% unless @user.meetings.count == 0 %>
     <div class="row">
     <div class="col-xs-12">
       <h3>Your mentorship event - you as a mentor</h3>
@@ -102,8 +107,10 @@
           <div class="row">
             <% meeting.booking.each do |booking|%>
               <% if booking.confirmation%>
-                <%= image_tag avatar_url?(booking.user), class: "preview"%>
-              <% end %>
+                <%= link_to user_path(booking.user) do %>
+                  <%= image_tag avatar_url?(booking.user), class: "preview"%>
+                <% end %>
+             <% end %>
             <% end %>
           </div>
         </div>
@@ -112,7 +119,7 @@
       <% end %>
     </div>
     </div>
-
+  <% end %>
 
   </div>
 </div>

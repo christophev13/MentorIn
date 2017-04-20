@@ -3,6 +3,7 @@
   <h2><%= @meeting.title %></h2>
           <p><%= @meeting.description %></p> <br>
           <i class="fa fa-calendar"></i><%=" #{@meeting.date.strftime('%d %b, %Y')}"%> <br>
+          <i class="fa fa-clock-o"></i><%=" #{@meeting.date.strftime('%I:%M%P')}"%> <br>
           <i class="fa fa-map-marker"></i><%=" #{@meeting.local}"%> <br><br>
 
 
