@@ -127,9 +127,10 @@
 }
 
 #light {
-        width:25px;
-        height: auto;
-      }
+  width:25px;
+  height: auto;
+  display: inline;
+}
 
 .list-pad {
        padding-left: 2em;
