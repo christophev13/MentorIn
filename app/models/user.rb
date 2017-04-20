@@ -151,7 +151,7 @@ class User < ApplicationRecord
 "Wine and Spirits",
 "Wireless", "Writing and Editing"]
 
-  PROFILE = ["College Freshman", "College Senior", "Recent Graduate", "Junior Professional", "Professional", "Expert Professional"]
+  PROFILE = ["Choose your profile", "College Freshman", "College Senior", "Recent Graduate", "Junior Professional", "Professional", "Expert Professional"]
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -161,7 +161,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :industry, presence: true, inclusion:{in: INDUSTRY}
-  #validates :profile, presence: true, inclusion:{in: PROFILE}
+  validates :profile, presence: true, inclusion:{in: PROFILE}
   validates :biography, presence: true
 
 
@@ -181,9 +181,12 @@ class User < ApplicationRecord
     user = User.where(provider: auth.provider, uid: auth.uid).first
     user ||= User.where(email: auth.info.email).first # User did a regular sign up in the past.
     if user
+      user.profile ||= "Choose your profile"
+      user_params.delete(:biography)
       user.update(user_params)
     else
       user = User.new(user_params)
+      user.profile ||= "Choose your profile"
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
       user.save
     end
