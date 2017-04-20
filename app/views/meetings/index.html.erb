@@ -1,6 +1,6 @@
 <div class="container">
 <h1 class="text-center padded-top">Choose one of the <%= Meeting.all.order('date ASC').where('date >= ?', Time.now).count %> meetings available. </h1>
-<h4 class="text-center padded-bottom">Just a very powerful phrase that will make people crazy about MentorING</h4>
+<h4 class="text-center padded-bottom">Just a very powerful phrase that will make people crazy about MentorIn</h4>
 <div class="row">
   <div class="col-lg-8 col-lg-offset-2 text-center padded-bottom">
     <%= form_tag(meetings_path, :method => "get", id: "search-form", class: "form-inline") do %>
