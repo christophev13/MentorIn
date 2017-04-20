@@ -11,6 +11,9 @@ class MeetingsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @mentor = @meeting.user
+    @user == @mentor ? @show_mentees = true : @show_mentees = false
   end
 
   def new

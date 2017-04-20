@@ -27,6 +27,9 @@ class BookingsController < ApplicationController
 
   def confirm_user # mentor can confirm a user
     @booking.confirmation = true
+    @booking.save
+    meeting = @booking.meeting
+    redirect_to meeting_path(meeting)
   end
 
 

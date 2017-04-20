@@ -1,0 +1,16 @@
+<div class="container">
+    <h1><%= "#{@user.first_name} #{@user.last_name}"%></h1>
+    <%= image_tag avatar_url?(@user), class: "avatar-square"%>
+    <%= link_to @user.linkedin_url do %>
+      <h5><i class="fa fa-linkedin-square" aria-hidden="true"></i>Linkedin</h5>
+    <% end  %>
+    <br>
+
+    <h4> <%=@user.industry%></h4>
+
+    <h4><%=@user.profile%></h4>
+    <br>
+
+    <p> <%=@user.biography%></p>
+
+</div>
