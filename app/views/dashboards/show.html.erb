@@ -1,24 +1,25 @@
 <!-- Lateral card with profile main info -->
+<div class="container">
 <div class="row padding-sup">
   <!-- add image_tag @user.avatar_url -->
 
   <div class="col-xs-3">
-        <div class="text-center card card-profile">
-        <div class="header-image" style="background-image: url('https://unsplash.it/600/120')"></div>
-        <div class='div-center'><%= image_tag @user.avatar_url%></div>
-        <div class="content text-center">
-          <h4><%= "#{@user.first_name} #{@user.last_name}"%></h4>
-          <br>
-          <h6><%=@user.industry%></h6>
-          <h6><%=@user.profile %></h6>
-        <hr>
-          <h5>Your meetings as mentee:</h5>
-          <%=@nb_meeting_mentee%>
-        <hr>
-          <h5>Your meetings as mentor:</h5>
-          <%=@nb_meeting_mentor%> <br>
-  </div></div></div>
-
+    <div class="text-center card card-profile">
+    <div class="header-image" style="background-image: url('https://unsplash.it/600/120')"></div>
+    <div class='div-center'><%= image_tag avatar_url?(@user)%></div>
+    <div class="content text-center">
+      <h4><%= "#{@user.first_name} #{@user.last_name}"%></h4><br>
+      <h6><%=@user.industry%></h6>
+      <h6><%=@user.profile %></h6>
+      <hr>
+      <h5>Your meetings as mentee:</h5>
+      <%=@nb_meeting_mentee%>
+      <hr>
+      <h5>Your meetings as mentor:</h5>
+      <%=@nb_meeting_mentor%> <br>
+    </div>
+    </div>
+  </div>
 
   <!-- List of meeting as mentee -->
   <div class="col-xs-9">
@@ -31,11 +32,12 @@
     <div class="card card-list">
       <hr>
       <%@user.booking.each do |booking|%>
-        <div class="row list-div">
+      <div class="row list-div">
         <div class="col-xs-4">
           <div class="dash-flex">
-            <!-- add image_tag @user.avatar_url -->
-            <div class='div-center'><%= image_tag booking.meeting.user.avatar_url, class: "dash-avatar" %></div>
+            <div class='div-center'>
+              <%= image_tag avatar_url?(booking.meeting.user), class: "dash-avatar"%>
+            </div>
             <div class="dash-title">
              <%="#{booking.meeting.user.first_name} #{booking.meeting.user.last_name}"%><br>
               <h6><%="#{booking.meeting.user.industry} | #{booking.meeting.user.profile}"%></h6>
@@ -44,16 +46,26 @@
         </div>
 
         <div class="col-xs-6">
-          <strong><%=booking.meeting.title%></strong><br>
-          <%=booking.meeting.profile_wanted%><br>
-          <%="#{booking.meeting.date} | #{booking.meeting.local}"%>
+          <%= link_to meeting_path(booking.meeting) do %>
+            <div class="no-decoration">
+              <strong><%=booking.meeting.title%></strong><br>
+              <%=booking.meeting.profile_wanted%><br>
+              <i class="fa fa-calendar"></i><%=" #{booking.meeting.date.strftime('%d %b, %Y')} | "%>
+              <i class="fa fa-map-marker"></i><%=" #{booking.meeting.local}"%>
+            </div>
+          <% end %>
         </div>
-        <div class="col-xs-2">
-          Status
-          <%=booking.confirmation%>
+        <div class="col-xs-2 text-center">
+            <% if booking.confirmation%>
+            <h6>Your participation has been confirmed</h6>
+            <%= image_tag 'green-light.png', id: "light"%>
+          <% else %>
+            <h6>Confirmation pending</h6>
+            <%= image_tag 'red-light.png', id: "light"%>
+          <% end %>
         </div>
-        </div>
-        <hr>
+      </div>
+      <hr>
       <% end %>
     </div>
     </div>
@@ -69,25 +81,25 @@
     <div class="card card-list">
       <hr>
       <%@user.meetings.each do |meeting|%>
+      <div class="row list-div">
+        <div class="col-xs-8">
+        <div class="list-pad">
+          <%= link_to meeting_path(meeting) do %>
+            <div class="no-decoration">
+              <strong><%=meeting.title%></strong><br>
+              <%=meeting.profile_wanted%><br>
+              <i class="fa fa-calendar"></i><%=" #{meeting.date.strftime('%d %b, %Y')} | "%>
+              <i class="fa fa-map-marker"></i><%=" #{meeting.local}"%>
+            </div>
 
-        <div class="row list-div">
+          <% end %>
+        </div>
+        </div>
         <div class="col-xs-4">
-          <div class="content">
-          <%="#{meeting.user.first_name} #{meeting.user.last_name}"%><br>
-          <h6><%="#{meeting.user.industry} | #{meeting.user.profile}"%></h6>
-          </div>
+          <%="Confirmed mentees: #{meeting.booking.reduce(0){|counter, item| counter += (item.confirmation == true ? 1 : 0) }}"%>
         </div>
-        <div class="col-xs-6">
-          <strong><%=meeting.title%></strong><br>
-          <%=meeting.profile_wanted%><br>
-          <%="#{meeting.date} | #{meeting.local}"%>
-        </div>
-        <div class="col-xs-2">
-          Status<br>
-          <%="Confirmations: #{meeting.booking.reduce(0){|counter, item| counter += (item.confirmation == true ? 1 : 0) }}"%>
-        </div>
-        </div>
-        <hr>
+      </div>
+      <hr>
       <% end %>
     </div>
     </div>
@@ -95,5 +107,5 @@
 
   </div>
 </div>
-
+</div>
 

@@ -1,7 +1,9 @@
-<h2><%= @meeting.title %></h2>
-        <p><%= @meeting.description %></p>
-        <p><%= @meeting.date.strftime("%d %b, %Y") %></p>
-        <p><%= @meeting.local %></p>
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> | <%= link_to "Delete", meeting_path,
-      method: :delete,
-      data: { confirm: "Are you sure? Please do inform the Attendees" } %>
+<div class="container">
+  <h2><%= @meeting.title %></h2>
+          <p><%= @meeting.description %></p>
+          <p><%= @meeting.date.strftime("%d %b, %Y") %></p>
+          <p><%= @meeting.local %></p>
+  <%= link_to 'Edit', edit_meeting_path(@meeting) %> | <%= link_to "Delete", meeting_path,
+        method: :delete,
+        data: { confirm: "Are you sure? Please do inform the Attendees" } %>
+</div>
