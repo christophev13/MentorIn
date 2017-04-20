@@ -253,6 +253,3 @@ meet6.save
   bk62.user = b
   bk62.meeting = meet6
   bk62.save
-
-
->>>>>>> master
