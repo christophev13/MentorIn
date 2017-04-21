@@ -60,7 +60,7 @@
           <% end %>
         </div>
         <div class="col-xs-2 text-center">
-            <% if booking.confirmation%>
+          <% if booking.confirmation%>
             <h6>Your participation has been confirmed</h6>
             <%= image_tag 'green-light.png', id: "light"%>
           <% else %>
@@ -102,7 +102,7 @@
         </div>
         <div class="col-xs-4">
           <div class="row">
-          <%="Confirmed mentees: #{meeting.booking.reduce(0){|counter, item| counter += (item.confirmation == true ? 1 : 0) }}"%>
+            Mentees: <%= mentee_confirmed(meeting)%> confirmed / <%= mentee_pending(meeting)%> pending
           </div>
           <div class="row">
             <% meeting.booking.each do |booking|%>
