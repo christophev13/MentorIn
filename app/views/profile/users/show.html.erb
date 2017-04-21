@@ -20,13 +20,9 @@
             </div>
 
         <% if @meetings.present? %>
-          <div class="row">
-              <div class="col-md-6 col-lg-10 col-lg-offset-1 padded-top">
                 <hr class="padded-top">
                   <h2 class="text-center">Join one of my meetings</h2>
                   <%= render '/meetings/meetings', meetings: @meetings  %>
-              </div>
-          </div>
         <% end %>
       </div>
 </div>
