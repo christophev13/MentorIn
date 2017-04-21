@@ -10,9 +10,13 @@
     width: 100%;
     margin-top: 15px;
 
+    &.card-auto {
+      height: auto;
+    }
+
       div.header-image {
         width: 100%;
-        height: 20%;
+        height: 80px;
         // background-image: url('https://unsplash.it/1200/800');
         background-size: cover;
       }
@@ -28,6 +32,11 @@
         display: block;
       }
 
+      .img-2x {
+        width: 150px;
+        height: 150px;
+      }
+
       .btn {
         padding-left: 40px;
         padding-right: 40px;
@@ -39,12 +48,17 @@
         padding: 15px;
         margin-top: 10%;
       }
-}
+
+      div.content-user {
+        padding: 15px;
+        margin-top: 4%;
+      }
+  }
 
   &-home {
     width: 100%;
     padding: 15px;
-}
+  }
 
   &-profile {
     margin: 15px;
@@ -120,8 +134,14 @@
   }
 }
 
+.btn-card-position {
+  position: absolute;
+    bottom: 22px;
+    width: 100%;
+    left: 0;
+}
 
-.list-div{
+.list-div {
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -135,4 +155,3 @@
 .list-pad {
        padding-left: 2em;
       }
-
