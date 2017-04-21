@@ -7,7 +7,7 @@
     <div class="text-center card card-profile">
     <div class="header-image" style="background-image: url('https://unsplash.it/600/120')"></div>
     <%= link_to profile_user_path(@user) do %>
-      <div class='div-center'><%= image_tag avatar_url?(@user)%></div>
+      <div class='div-center'><%= image_tag @user.avatar_url%></div>
     <% end %>
     <div class="content text-center">
       <h4><%= "#{@user.first_name} #{@user.last_name}"%></h4><br>
@@ -39,7 +39,7 @@
           <div class="dash-flex">
             <div class='div-center'>
               <%= link_to profile_user_path(booking.meeting.user) do %>
-                <%= image_tag avatar_url?(booking.meeting.user)%>
+                <%= image_tag booking.meeting.user.avatar_url%>
               <% end %>
             </div>
             <div class="dash-title">
@@ -108,7 +108,7 @@
             <% meeting.booking.each do |booking|%>
               <% if booking.confirmation%>
                 <%= link_to profile_user_path(booking.user) do %>
-                  <%= image_tag avatar_url?(booking.user), class: "preview"%>
+                  <%= image_tag booking.user.avatar_url, class: "preview"%>
                 <% end %>
              <% end %>
             <% end %>
