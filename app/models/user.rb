@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :meetings, dependent: :destroy
   has_many :booking
   after_create :send_welcome_email
+  before_save :set_avatar_placeholder
 
   INDUSTRY = ["Airlines/Aviation",
 "Alternative Dispute Resolution",
@@ -194,6 +195,11 @@ class User < ApplicationRecord
   end
 
   private
+
+  def set_avatar_placeholder
+      self.avatar_url = "avatar-placeholder.png" unless self.avatar_url.present?
+
+  end
 
   def send_welcome_email
     UserMailer.welcome(self).deliver_now

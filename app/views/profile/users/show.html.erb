@@ -3,7 +3,7 @@
         <div class="col-md-6 col-lg-10 col-lg-offset-1">
             <div class="card card-meeting card-auto">
                 <div class="header-image" style="background-image: url(<%= set_industry_image(@user) %>)"></div>
-                <div class='div-center'><%= image_tag avatar_url?(@user), class: 'img-2x' %></div>
+                <div class='div-center'><%= image_tag @user.avatar_url, class: 'img-2x' %></div>
                 <div class="content-user text-center">
                     <h1><%= @user.first_name %>
                         <%= @user.last_name %></h1>
@@ -20,13 +20,9 @@
             </div>
 
         <% if @meetings.present? %>
-          <div class="row">
-              <div class="col-md-6 col-lg-10 col-lg-offset-1 padded-top">
                 <hr class="padded-top">
                   <h2 class="text-center">Join one of my meetings</h2>
                   <%= render '/meetings/meetings', meetings: @meetings  %>
-              </div>
-          </div>
         <% end %>
       </div>
 </div>
