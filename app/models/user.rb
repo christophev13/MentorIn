@@ -180,7 +180,7 @@ class User < ApplicationRecord
     user = User.where(provider: auth.provider, uid: auth.uid).first
     user ||= User.where(email: auth.info.email).first # User did a regular sign up in the past.
     if user
-      user.profile ||= "Choose your profile"
+      #user.profile ||= "Choose your profile"
       user_params.delete(:biography)
       user.update(user_params)
     else
