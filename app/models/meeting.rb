@@ -3,7 +3,7 @@ class Meeting < ApplicationRecord
   has_many :booking
 
   geocoded_by :local
-  after_validation :geocode, if: :local_changed?
+  after_validation :geocode
 
   validates :title, presence: true
   validates :description, presence: true
@@ -12,7 +12,7 @@ class Meeting < ApplicationRecord
   validates :date, presence: true
   validate :future_event
 
-  
+
   # method for seach
   def self.search(search)
     where("title ILIKE (?) OR description ILIKE (?)", "%#{search}%", "%#{search}%")

@@ -5,6 +5,8 @@
           <i class="fa fa-calendar"></i><%=" #{@meeting.date.strftime('%d %b, %Y')}"%> <br>
           <i class="fa fa-clock-o"></i><%=" #{@meeting.date.strftime('%I:%M%P')}"%> <br>
           <i class="fa fa-map-marker"></i><%=" #{@meeting.local}"%> <br><br>
+          <div id="map" style="height: 400px;
+        width: 100%;"></div>
 
 
 <%if @show_mentees #display the edit / delete of meeting only to the mentor%>
@@ -59,3 +61,19 @@
 
 
 </div>
+
+
+  <%= javascript_tag do %>
+  function initMap() {
+        var uluru = {lat: <%= @meeting.latitude %>, lng: <%= @meeting.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+<% end %>
+<script async defer src="https://maps.google.com/maps/api/js?key=AIzaSyCjVLA9cHvBAH--SS6sEK8JL1MHirgJrFE&callback=initMap"></script>
