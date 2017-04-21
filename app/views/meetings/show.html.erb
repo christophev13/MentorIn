@@ -69,7 +69,7 @@
 
   <div class="row">
     <div class="col-xs-12">
-        <div class="text-center card card-profile">
+        <div class="text-center card card-map">
         <div class="map-wrapper">
         <div id="map" style="width: 100%; height: 200px;"></div>
         </div>
@@ -84,6 +84,7 @@
   </div>
 </div>
 <div class="row">
+  <div class="col-xs-12">
   <div class="card card-list">
     <hr>
     <%@meeting.booking.order(:id).each do |booking|%>
@@ -109,12 +110,13 @@
           <h6>Participant confirmed</h6>
             <%= image_tag 'green-light.png', id: "light"%>
         <% else %>
-        <%= button_to "Confirm participation", confirm_user_meeting_booking_path(@meeting,booking), method: :patch, class: "btn btn-success" %>
+        <%= button_to "Confirm participation", confirm_user_meeting_booking_path(@meeting,booking), method: :patch, class: "btn btn-success text-btn" %>
         <% end %>
       </div>
     </div>
     <hr>
     <% end %>
+  </div>
   </div>
 </div>
 <% end %>

@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-lg-10 col-lg-offset-1">
+
             <div class="card card-meeting card-auto">
+            <div class="edit-pos"><%= link_to edit_user_registration_path(@user) do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i><% end %></div>
                 <div class="header-image" style="background-image: url(<%= set_industry_image(@user) %>)"></div>
                 <div class='div-center'><%= image_tag @user.avatar_url, class: 'img-2x' %></div>
                 <div class="content-user text-center">
@@ -16,6 +18,8 @@
                     <% end %>
                     <hr>
                     <p><%= @user.biography %></p>
+
+
                 </div>
             </div>
 
@@ -24,5 +28,7 @@
                   <h2 class="text-center">Join one of my meetings</h2>
                   <%= render '/meetings/meetings', meetings: @meetings  %>
         <% end %>
+
       </div>
+
 </div>
