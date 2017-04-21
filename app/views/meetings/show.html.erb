@@ -6,7 +6,7 @@
       <div class="text-center card card-profile">
         <div class="header-image" style="background-image: url('https://unsplash.it/600/120')"></div>
         <%= link_to profile_user_path(@meeting.user) do %>
-          <div class='div-center'><%= image_tag avatar_url?(@meeting.user)%></div>
+          <div class='div-center'><%= image_tag @meeting.user.avatar_url%></div>
         <% end %>
         <div class="content text-center">
           <h4><%= "#{@meeting.user.first_name} #{@meeting.user.last_name}"%></h4><br>
