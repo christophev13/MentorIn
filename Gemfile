@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'cloudinary'
+gem "geocoder"
 
 group :development, :test do
   gem 'binding_of_caller'
