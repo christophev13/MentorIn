@@ -92,7 +92,7 @@
           <%= link_to meeting_path(meeting) do %>
             <div class="no-decoration">
               <strong><%=meeting.title%></strong><br>
-              <%=meeting.profile_wanted%><br>
+              <p><%=meeting.profile_wanted%></p>
               <i class="fa fa-calendar"></i><%=" #{meeting.date.strftime('%d %b, %Y')} | "%>
               <i class="fa fa-map-marker"></i><%=" #{meeting.local}"%>
             </div>
@@ -102,7 +102,7 @@
         </div>
         <div class="col-xs-4">
           <div class="row">
-            Mentees: <%= mentee_confirmed(meeting)%> confirmed / <%= mentee_pending(meeting)%> pending
+            <%= mentee_message(meeting)%>
           </div>
           <div class="row">
             <% meeting.booking.each do |booking|%>

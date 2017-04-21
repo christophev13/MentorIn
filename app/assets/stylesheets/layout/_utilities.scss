@@ -55,3 +55,24 @@ body {
 .margin-bottom{
   margin-bottom: 1em;
 }
+
+.map-wrapper{
+margin: 5px;
+overflow:hidden;
+}
+
+.height{
+  height:100%;
+}
+
+
+.absolute-position{
+  position: absolute;
+  right: 1em;
+  top: 50%;
+}
+
+.relative{
+  position: relative;
+  height: 100%;
+}

@@ -1,80 +1,83 @@
 <div class="container">
 <!-- card with the mentor profile on the side -->
   <div class="row">
-  <div class="col-xs-3">
-    <div class="text-center card card-profile">
-    <div class="header-image" style="background-image: url('https://unsplash.it/600/120')"></div>
-    <%= link_to profile_user_path(@meeting.user) do %>
-      <div class='div-center'><%= image_tag avatar_url?(@meeting.user)%></div>
-    <% end %>
-    <div class="content text-center">
-      <h4><%= "#{@meeting.user.first_name} #{@meeting.user.last_name}"%></h4><br>
-      <h6><%=@meeting.user.industry%></h6>
-      <h6><%=@meeting.user.profile %></h6>
-    </div>
-    </div>
-  </div>
-
-  <div class="col-xs-9">
-    <div class="card card-profile">
-    <div class="row">
-    <div class="col-xs-12">
-    <div class="padded-left">
-      <h2><%= @meeting.title %></h2>
-      <p><%= @meeting.description %></p>
-      <hr>
-    </div>
-    </div>
-    </div>
-    <div class="row margin-bottom">
-
-
-      <div class="col-xs-5">
-      <div class="padded-left">
-        <p><i class="fa fa-calendar"></i><%=" #{@meeting.date.strftime('%d %b, %Y')}"%></p>
-        <p><i class="fa fa-clock-o"></i><%=" #{@meeting.date.strftime('%I:%M%P')}"%></p>
-        <p><i class="fa fa-map-marker"></i><%=" #{@meeting.local}"%></p>
-        <br>
-        <br>
-
-        <div>
-        <!-- if meeting of the current user -->
-        <%if @show_mentees%>
-
-            <%= link_to edit_meeting_path(@meeting) do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i><% end %>&nbsp
-            <%= link_to meeting_path, method: :delete, data: { confirm: "Are you sure? Please do inform the Attendees" } do %><i class="fa fa-trash-o" aria-hidden="true"></i><% end %>
-        <% else %>
-          <!-- status and button depending on current_user -->
-          <% if @booking%>
-            <% if @booking.confirmation%>
-              <h6><%= image_tag 'green-light.png', id: "light"%>Your participation has been confirmed</h6>
-            <% else %>
-              <h6><%= image_tag 'red-light.png', id: "light"%>Confirmation for your participation pending</h6>
-            <% end %>
-          <% else %>
-            <%= link_to "Join", new_meeting_booking_path(@meeting), class: "btn btn-success" %>
-          <% end %>
+    <div class="col-xs-3" >
+      <div class="text-center card card-profile">
+        <div class="header-image" style="background-image: url('https://unsplash.it/600/120')"></div>
+        <%= link_to profile_user_path(@meeting.user) do %>
+          <div class='div-center'><%= image_tag avatar_url?(@meeting.user)%></div>
         <% end %>
-
+        <div class="content text-center">
+          <h4><%= "#{@meeting.user.first_name} #{@meeting.user.last_name}"%></h4><br>
+          <h6><%=@meeting.user.industry%></h6>
+          <h6><%=@meeting.user.profile %></h6>
         </div>
       </div>
-      </div>
-      <div class="col-xs-7">
-        placeholder map
-      </div>
     </div>
+
+    <div class="col-xs-9">
+      <div class="card card-profile">
+        <div class="row">
+        <div class="col-xs-12">
+        <div class="padded-left">
+          <h2><%= @meeting.title %></h2>
+          <p><%= @meeting.description %></p>
+          <hr>
+        </div>
+        </div>
+        </div>
+
+      <div class="row margin-bottom">
+        <div class="col-xs-6">
+        <div class="padded-left">
+          <p><i class="fa fa-calendar"></i><%=" #{@meeting.date.strftime('%d %b, %Y')}"%> | <i class="fa fa-clock-o"></i><%=" #{@meeting.date.strftime('%I:%M%P')}"%></p>
+          <p><i class="fa fa-map-marker"></i><%=" #{@meeting.local}"%></p>
+          <p><i class="fa fa-user" aria-hidden="true"></i><%=" Profiles: #{@meeting.profile_wanted}  |  Max. participants: #{@meeting.nb_max_participant}"%></p>
+        </div>
+        </div>
+
+        <div class="col-xs-6">
+        <div class="relative">
+          <div class="absolute-position">
+            <!-- if meeting of the current user -->
+            <%if @show_mentees && @meeting.booking.count>0%>
+                <%= link_to edit_meeting_path(@meeting) do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i><% end %>&nbsp
+                <%= link_to meeting_path, method: :delete, data: { confirm: "Are you sure? Please do inform the Attendees" } do %><i class="fa fa-trash-o" aria-hidden="true"></i><% end %>
+            <% else %>
+              <!-- status and button depending on current_user -->
+              <% if @booking%>
+                <% if @booking.confirmation%>
+                  <h6><%= image_tag 'green-light.png', id: "light"%>Your participation has been confirmed</h6>
+                <% else %>
+                  <h6><%= image_tag 'red-light.png', id: "light"%>Confirmation for your participation pending</h6>
+                <% end %>
+              <% else %>
+                <%= link_to "Join", new_meeting_booking_path(@meeting), class: "btn btn-success" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        </div>
+
+      </div>
+      </div>
     </div>
 
   </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+        <div class="text-center card card-profile">
+        <div class="map-wrapper">
+        <div id="map" style="width: 100%; height: 200px;"></div>
+        </div>
+        </div>
+    </div>
   </div>
-  <br>
 
-
-<br>
-<br>
 <%if @show_mentees #display the list of booking only to the mentor%>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12 text-center">
     <h3>List of participation request for your mentorship</h3>
   </div>
 </div>
@@ -119,11 +122,15 @@
 
 
   <%= javascript_tag do %>
+
   function initMap() {
         var uluru = {lat: <%= @meeting.latitude %>, lng: <%= @meeting.longitude %>};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 17,
-          center: uluru
+          styles: [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}],
+          zoom: 14,
+          center: uluru,
+          mapTypeControl: false,
+          scrollwheel: false
         });
         var marker = new google.maps.Marker({
           position: uluru,
@@ -131,4 +138,5 @@
         });
       }
 <% end %>
-<script async defer src="https://maps.google.com/maps/api/js?key=AIzaSyCjVLA9cHvBAH--SS6sEK8JL1MHirgJrFE&callback=initMap"></script>
+<script async defer src="https://maps.google.com/maps/api/js?key=AIzaSyBiZD1IvcyvoyPvVdBTOiQAbtQ2-CDS1SE&callback=initMap"></script>
+  </div>
