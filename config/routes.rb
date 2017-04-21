@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :users, only: :show
+  namespace :profile do
+    resources :users, only: :show
+  end
 
   get 'dashboards/show'
 
