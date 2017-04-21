@@ -9,6 +9,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'redis'
 
 
+#linkedin signin
+gem 'omniauth'
+gem 'omniauth-linkedin'
+
 gem 'inline_svg'
 gem 'sass-rails'
 gem 'jquery-rails'

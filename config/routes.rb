@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   get 'dashboards/show'
 
-  devise_for :users
+  devise_for :users,
+    controllers: {
+                    omniauth_callbacks: 'users/omniauth_callbacks',
+                    registrations: 'registrations'
+                 }
 
   resources :meetings do
     resources :bookings do
@@ -14,7 +18,6 @@ Rails.application.routes.draw do
         patch "confirm_user"
       end
     end
-
   end
 
   root to: 'pages#home'
