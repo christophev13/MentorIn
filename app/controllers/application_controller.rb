@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
    before_action :configure_permitted_parameters, if: :devise_controller?
    before_action :set_new_user, unless: :devise_controller? || :current_user?
-   after_filter :store_action
+   after_action :store_action
+   before_action :check_if_user_is_valid, if: :current_user?
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -21,16 +22,22 @@ class ApplicationController < ActionController::Base
   end
 
   def store_action
-  return unless request.get?
-  if (request.path != "/users/sign_in" &&
-      request.path != "/users/sign_up" &&
-      request.path != "/users/password/new" &&
-      request.path != "/users/password/edit" &&
-      request.path != "/users/confirmation" &&
-      request.path != "/users/sign_out" &&
-      !request.xhr?) # don't store ajax calls
-    store_location_for(:user, meetings_path)
+    return unless request.get?
+    if (request.path != "/users/sign_in" &&
+        request.path != "/users/sign_up" &&
+        request.path != "/users/password/new" &&
+        request.path != "/users/password/edit" &&
+        request.path != "/users/confirmation" &&
+        request.path != "/users/sign_out" &&
+        !request.xhr?) # don't store ajax calls
+      store_location_for(:user, meetings_path)
+    end
   end
-end
+
+  def check_if_user_is_valid
+    if !current_user.valid? && !devise_controller?
+      redirect_to edit_user_registration_path, alert: "Please finish your profile."
+    end
+  end
 
 end
