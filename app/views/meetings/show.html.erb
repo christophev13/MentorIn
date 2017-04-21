@@ -86,7 +86,7 @@
       <div class="col-xs-4">
         <div class="dash-flex">
           <div class='div-center'>
-            <%= image_tag avatar_url?(booking.user), class: "dash-avatar"%>
+            <%= image_tag booking.user.avatar_url, class: "dash-avatar"%>
           </div>
           <div class="dash-title">
            <%="#{booking.user.first_name} #{booking.user.last_name}"%><br>
