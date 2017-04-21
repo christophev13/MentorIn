@@ -5,6 +5,10 @@
   border-right: 5px;
   height: auto;
 
+  &-map{
+    margin: 15px;
+  }
+
   &-meeting {
     height: 490px;
     width: 100%;
@@ -75,6 +79,11 @@
       div.content-user {
         padding: 15px;
         margin-top: 4%;
+      }
+
+      .edit-pos{
+        margin: 5px;
+        text-align: right;
       }
   }
 
