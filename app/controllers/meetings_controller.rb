@@ -14,6 +14,8 @@ class MeetingsController < ApplicationController
     @user = current_user
     @mentor = @meeting.user
     @user == @mentor ? @show_mentees = true : @show_mentees = false
+
+    @booking = @user.booking.where(meeting_id: @meeting.id)[0]
   end
 
   def new

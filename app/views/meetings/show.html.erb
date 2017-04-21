@@ -1,17 +1,74 @@
 <div class="container">
 
-  <h2><%= @meeting.title %></h2>
-          <p><%= @meeting.description %></p> <br>
-          <i class="fa fa-calendar"></i><%=" #{@meeting.date.strftime('%d %b, %Y')}"%> <br>
-          <i class="fa fa-clock-o"></i><%=" #{@meeting.date.strftime('%I:%M%P')}"%> <br>
-          <i class="fa fa-map-marker"></i><%=" #{@meeting.local}"%> <br><br>
+<!-- card with the mentor profile on the side -->
+  <div class="row">
+  <div class="col-xs-3">
+    <div class="text-center card card-profile">
+    <div class="header-image" style="background-image: url('https://unsplash.it/600/120')"></div>
+    <%= link_to user_path(@meeting.user) do %>
+      <div class='div-center'><%= image_tag avatar_url?(@meeting.user)%></div>
+    <% end %>
+    <div class="content text-center">
+      <h4><%= "#{@meeting.user.first_name} #{@meeting.user.last_name}"%></h4><br>
+      <h6><%=@meeting.user.industry%></h6>
+      <h6><%=@meeting.user.profile %></h6>
+    </div>
+    </div>
+  </div>
 
+  <div class="col-xs-9">
+    <div class="card card-profile">
+    <div class="row">
+    <div class="col-xs-12">
+    <div class="padded-left">
+      <h2><%= @meeting.title %></h2>
+      <p><%= @meeting.description %></p>
+      <hr>
+    </div>
+    </div>
+    </div>
+    <div class="row margin-bottom">
 
-<%if @show_mentees #display the edit / delete of meeting only to the mentor%>
-  <%= link_to 'Edit meeting', edit_meeting_path(@meeting) %> | <%= link_to "Delete meeting", meeting_path,
-        method: :delete,
-        data: { confirm: "Are you sure? Please do inform the Attendees" } %>
-<% end %>
+      <div class="col-xs-5">
+      <div class="padded-left">
+        <p><i class="fa fa-calendar"></i><%=" #{@meeting.date.strftime('%d %b, %Y')}"%></p>
+        <p><i class="fa fa-clock-o"></i><%=" #{@meeting.date.strftime('%I:%M%P')}"%></p>
+        <p><i class="fa fa-map-marker"></i><%=" #{@meeting.local}"%></p>
+        <br>
+        <br>
+
+        <div>
+        <!-- if meeting of the current user -->
+        <%if @show_mentees%>
+
+            <%= link_to edit_meeting_path(@meeting) do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i><% end %>&nbsp
+            <%= link_to meeting_path, method: :delete, data: { confirm: "Are you sure? Please do inform the Attendees" } do %><i class="fa fa-trash-o" aria-hidden="true"></i><% end %>
+        <% else %>
+          <!-- status and button depending on current_user -->
+          <% if @booking%>
+            <% if @booking.confirmation%>
+              <h6><%= image_tag 'green-light.png', id: "light"%>Your participation has been confirmed</h6>
+            <% else %>
+              <h6><%= image_tag 'red-light.png', id: "light"%>Confirmation for your participation pending</h6>
+            <% end %>
+          <% else %>
+            <%= link_to "Join", new_meeting_booking_path(@meeting), class: "btn btn-success" %>
+          <% end %>
+        <% end %>
+
+        </div>
+      </div>
+      </div>
+      <div class="col-xs-7">
+        placeholder map
+      </div>
+    </div>
+    </div>
+
+  </div>
+  </div>
+  <br>
+
 
 <br>
 <br>

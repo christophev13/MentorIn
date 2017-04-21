@@ -22,6 +22,9 @@ body {
   &-bottom {
     padding-bottom: 1em;
   }
+  &-left{
+    padding-left: 1em;
+  }
 }
 
 // Backgrounds
@@ -47,4 +50,8 @@ body {
 .no-decoration{
   text-decoration: none;
   color: black;
+}
+
+.margin-bottom{
+  margin-bottom: 1em;
 }
