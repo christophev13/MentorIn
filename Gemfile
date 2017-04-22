@@ -13,6 +13,7 @@ gem 'redis'
 gem 'omniauth'
 gem 'omniauth-linkedin'
 
+gem 'carrierwave', '~> 0.11.2'
 gem 'inline_svg'
 gem 'sass-rails'
 gem 'jquery-rails'

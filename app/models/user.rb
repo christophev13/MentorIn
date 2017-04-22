@@ -166,6 +166,8 @@ class User < ApplicationRecord
   validates :profile, presence: true, inclusion:{in: PROFILE}
   validates :biography, presence: true
 
+  mount_uploader :photo, PhotoUploader
+
   def self.find_for_linkedin_oauth(auth)
 
     user_params = auth.slice(:provider, :uid)

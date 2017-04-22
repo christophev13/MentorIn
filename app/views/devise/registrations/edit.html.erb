@@ -10,7 +10,8 @@
           <h4>Profile information</h4>
           <%= f.input :first_name, required: true, autofocus: true %>
           <%= f.input :last_name, required: true %>
-          <%= f.input :avatar_url, label: 'Profile Image' %>
+          <%= f.input :photo %>
+          <%= f.input :photo_cache, as: :hidden %>
           <%= f.input :profile, label: 'Level of Experience',  collection: User::PROFILE, required: true %>
           <%= f.input :industry, collection: User::INDUSTRY, required: true %>
           <%= f.input :linkedin_url %>

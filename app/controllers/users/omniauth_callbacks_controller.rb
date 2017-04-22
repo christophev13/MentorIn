@@ -12,4 +12,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
   end
+
+private
+  def product_params
+    params.require(:product).permit(:name, :description, :photo, :photo_cache)
+  end
 end
