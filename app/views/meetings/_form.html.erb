@@ -4,8 +4,7 @@
     <%= f.input :description, placeholder: "" %>
     <%= f.input :nb_max_participant, placeholder: "From 1 to 5", collection: 1..5 %>
     <%= f.input :profile_wanted, label: 'Level of Experience', collection: User::PROFILE %>
-    <%= f.input :date, placeholder: "" %>
+    <%= f.input :date, placeholder: "", class: 'datepicker' %>
     <%= f.input :local, placeholder: "" %>
     <%= f.button :submit, class: "btn btn-primary"  %>
 <% end %>
-

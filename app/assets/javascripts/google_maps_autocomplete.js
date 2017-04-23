@@ -10,6 +10,9 @@ $(document).ready(function() {
       }
     });
   }
+$('.datepicker').datepicker({
+      format: "ds"
+  });
 });
 
 function onPlaceChanged() {
@@ -59,4 +62,6 @@ function getAddressComponents(place) {
     city: city,
     country_code: country_code
   };
+
+
 }
